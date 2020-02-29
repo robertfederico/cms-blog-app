@@ -1,6 +1,16 @@
 <?php
 include_once '../includes/db_conn.php';
 
+function confirm_query($result)
+{
+    global $conn;
+    if ($conn->query($result) === TRUE) {
+        echo "<script>alert('Success');</script>";
+    } else {
+        echo "Error: " . $result . "<br>" . $conn->error;
+    }
+}
+
 function insert_categories()
 {
     global $conn;

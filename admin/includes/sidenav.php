@@ -75,7 +75,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="add-posts.php">Add Posts</a>
+                                <a href="view-posts.php?source=add_post">Add Posts</a>
                             </li>
                             <li>
                                 <a href="view-posts.php">View Posts</a>
