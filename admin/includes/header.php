@@ -33,6 +33,7 @@ include 'functions.php';
     <!-- <script src="https://kit.fontawesome.com/2034693749.js" crossorigin="anonymous"></script> -->
 
     <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
     <!-- Custom styles for this template -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
 
