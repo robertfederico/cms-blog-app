@@ -4,6 +4,7 @@
  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
 
  <script>
 $('#categories').dataTable();
@@ -52,8 +53,18 @@ $('.edit_category').on('click', function() {
     $('#edit_modal').modal('show');
 });
 
+let editor;
+
+ClassicEditor
+    .create(document.querySelector('#update_post_content'))
+    .then(newEditor => {
+        editor = newEditor;
+    })
 // open edit modal for EDIT POSTS
 $('.edit_posts').on('click', function() {
+
+    const editorData = editor.getData();
+
     var posts_id = $(this).data('id');
     var post_author = $(this).data('post_author');
     var post_title = $(this).data('post_title');
@@ -61,17 +72,27 @@ $('.edit_posts').on('click', function() {
     var post_status = $(this).data('post_status');
     var post_tag = $(this).data('post_tag');
     var post_content = $(this).data('post_content');
+    var post_image = $(this).data('post_image');
 
+    $('#post_id').val(posts_id);
     $('#update_post_title').val(post_title);
     $('#update_post_category_id').val(post_cat_id);
     $('#update_post_author').val(post_author);
     $('#update_post_status').val(post_status);
-    //  $('#update_post_image').val(title);
+    //  $('#update_post_image').attr("file", post_image);
     $('#update_post_tags').val(post_tag);
-    $('#update_post_content').val(post_content);
+    editor.data.set(post_content);
 
     $('#edit_posts').modal('show');
 });
+ </script>
+
+ <script>
+ClassicEditor
+    .create(document.querySelector('#post_content'))
+    .then(editor => {
+        console.log(editor);
+    })
  </script>
 
  </body>
