@@ -17,10 +17,14 @@ include 'includes/header.php';
                         <?php
                         insert_categories();
                         ?>
-                        <form action="" method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="cat_title">Category Title</label>
                                 <input name="cat_title" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="cat_image">Category Image</label>
+                                <input name="cat_image" type="file" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" name="submit" type="submit">Add Category</button>
@@ -31,26 +35,29 @@ include 'includes/header.php';
 
                 <div class="col-md-8">
                     <div class="card shadow p-4">
-                        <table id="categories" class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Category Title</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div class="table-responsive">
+                            <table id="categories" class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category Title</th>
+                                        <th>Image</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    display_categories();
+                                    ?>
+                                </tbody>
+
+                                <!-- delete -->
+
                                 <?php
-                                display_categories();
+                                delete_category();
                                 ?>
-                            </tbody>
-
-                            <!-- delete -->
-
-                            <?php
-                            delete_category();
-                            ?>
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,13 +81,17 @@ include 'includes/header.php';
                 $query = "SELECT * FROM categories";
                 $select_categories = mysqli_query($conn, $query);
                 ?>
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="cat_title">Category Title</label>
                         <input name="update_category" id="update_category" type="text" class="form-control">
-                        <input name="update_category_id" id="update_category_id" type="hidden">
                     </div>
                     <div class="form-group">
+                        <label for="vat_image">Category Image</label>
+                        <input type="file" class="form-control" name="update_cat_image">
+                    </div>
+                    <div class="form-group">
+                        <input name="update_category_id" id="update_category_id" type="hidden">
                         <button class="btn btn-success" name="update" type="submit">Update Category</button>
                     </div>
                 </form>
