@@ -180,16 +180,54 @@ li a.active {
   color: #16c7ff !important;
 }
 
-/* =========================================================== */
+/* ================================= navbar ======================================*/
+nav.navbar a.navbar-brand {
+  color: #16c7ff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 30px;
+}
+nav.navbar form .sidebar-search input {
+  border: 1px solid #b8bfce;
+  outline: none;
+  border-right: none;
+  width: 500px;
+}
+nav.navbar form .sidebar-search button {
+  border: 1px solid #b8bfce;
+  outline: none;
+  background: transparent;
+  border-left: none;
+  color: #31353d;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
 
+nav.navbar ul li a {
+  color: #464a52;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+nav.navbar ul li a:hover {
+  color: #16c7ff;
+  transition: all 0.4s;
+}
+
+/* carousel */
+.carousel .carousel-inner .carousel-item img {
+  height: 75vh !important;
+  filter: brightness(65%);
+}
+/* =============================== index posts ============================ */
 .card {
   position: relative !important;
   overflow: hidden !important;
 }
-.img-container {
-  width: 100% !important;
-  height: 100% !important;
-  background: black;
+.card .img-container img.img-card {
+  width: 100%;
+  height: 379px;
+  filter: brightness(65%);
 }
 
 .desc-box {
@@ -206,7 +244,7 @@ p.author {
   line-height: 1.6;
 }
 
-a.blog-link {
+.desc-box h3 {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 700;
@@ -214,19 +252,112 @@ a.blog-link {
   color: #ffffff;
 }
 
-a.blog-link:hover {
-  text-decoration: underline;
+.card .img-container a:hover > img.img-card {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.4s ease-in-out;
+  z-index: 2;
+}
+/* ===================== sidebar ============================================*/
+.cat-container {
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* justify-content: space-between; */
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-.img-container img.img-card {
-  height: 100%;
+.caption {
+  overflow: hidden !important;
+  transition: transform 0.2s ease-in-out;
+  display: inline-block;
+  margin-bottom: 8px;
+  width: calc(33% - 6px);
+  margin-right: 4px;
+  height: 225px;
+}
+
+.cat-container .caption a.category_link img {
+  overflow: hidden !important;
+  border: none;
   width: 100%;
+  height: 225px;
+  display: block;
+  transition: transform 0.2s ease-in-out;
   filter: brightness(65%);
 }
 
-.img-container:hover > img.img-card {
+.cat-container a.category_link:hover > img {
   cursor: pointer;
   transform: scale(1.1);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.5s ease;
   z-index: 2;
+}
+
+.cat-container h5.cat-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  position: relative;
+  bottom: 35px;
+  left: 2%;
+  text-decoration: none;
+  color: #fff;
+}
+
+/*  ==================================Posts page ========================================*/
+.d-posts .image-container {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+}
+.d-posts .image-container .text-container {
+  position: relative;
+  width: 60%;
+  top: 22%;
+  left: 12%;
+  color: #fff;
+}
+.d-posts .image-container .text-container h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 0;
+  margin: 0;
+  padding-right: 120px;
+}
+.d-posts .image-container p.post-tag {
+  position: relative;
+  top: 22%;
+  left: 12%;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  color: #f1f1f1;
+  padding: 0;
+  margin: 0;
+}
+
+.container .col-lg-8 .text-justify p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.6 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .d-posts {
+    overflow-x: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .d-posts .image-container {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 200px;
+  }
+  .cat-container .caption {
+    margin-bottom: 8px;
+    width: calc(50% - 6px);
+    margin-right: 4px;
+  }
 }
