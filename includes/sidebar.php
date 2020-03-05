@@ -1,47 +1,27 @@
       <!-- Blog Sidebar Widgets Column -->
-      <div class="col-md-4">
-          <!-- Blog Search Well -->
-          <div class="card shadow p-4 mb-3">
-              <h4>Blog Search</h4>
-
-              <form action="search.php" method="POST">
-                  <div class="sidebar-search">
-                      <div>
-                          <div class="input-group">
-                              <input type="text" class="form-control search-menu" name="search" id="search"
-                                  placeholder="Search...">
-                              <span class="input-group-btn">
-                                  <button class="btn btn-success" type="submit" name="submit">
-                                      <span class="fa fa-search"></span>
-                                  </button>
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-              </form>
-          </div>
-
-          <div class="card shadow p-4 mb-3">
+      <div class="col-md-8 mb-5">
+          <h4>Categories</h4>
+          <div class="cat-container">
               <?php
-                $query = "SELECT * FROM categories";
-                $select_categories = mysqli_query($conn, $query);
-                ?>
-              <h4>Blog Categories</h4>
-              <div class="row">
-                  <div class="col-lg-12">
-                      <ul class="list-unstyled">
-                          <?php
-                            while ($row = mysqli_fetch_assoc($select_categories)) {
-                                $cat_title = $row['category_title'];
-                                echo "<li><a href='#'>{$cat_title}</a></li>";
-                            }
-                            ?>
-                      </ul>
-                  </div>
+          $query = "SELECT * FROM categories";
+          $select_categories = mysqli_query($conn, $query);
+
+          while ($row = mysqli_fetch_assoc($select_categories)) {
+            $category_id = $row['category_id'];
+            $cat_title = $row['category_title'];
+            $cat_image = $row['cat_image'];
+          ?>
+              <div class="caption">
+                  <a class="category_link" href="categories.php?category=<?php echo $category_id; ?>">
+                      <img src="images/<?php echo $cat_image; ?>" />
+                      <h5 class="cat-title"><?php echo $cat_title; ?></h5>
+                  </a>
               </div>
+              <?php
+          }
+          ?>
           </div>
-
           <!-- Side Widget Well -->
-          <?php include 'widget.php'; ?>
-
+          <?php //include 'widget.php'; 
+        ?>
       </div>
