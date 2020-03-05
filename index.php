@@ -2,6 +2,20 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navbar.php' ?>
 <!-- Page Content -->
+<?php
+$query = "SELECT * FROM posts ORDER BY posts_id DESC LIMIT 1";
+$posts = mysqli_query($conn, $query);
+
+while ($row = mysqli_fetch_assoc($posts)) {
+    $post_id = $row['posts_id'];
+    $post_title = $row['post_title'];
+    $post_author = $row['post_author'];
+    $post_date = $row['post_date'];
+    $post_image = $row['post_image'];
+    $post_tag = $row['post_tag'];
+    $post_content = substr($row['post_content'], 0, 100);
+
+?>
 <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -10,24 +24,24 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://source.unsplash.com/user/erondu/daily" class="d-block w-100">
+            <img src="images/<?php echo $post_image; ?>" class="d-block w-100">
             <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h5> <?php echo $post_title; ?></h5>
+                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="https://source.unsplash.com/random" class=" d-block w-100">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h5> <?php echo $post_title; ?></h5>
+                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="https://source.unsplash.com/daily" class="d-block w-100">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <h5> <?php echo $post_title; ?></h5>
+                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
             </div>
         </div>
     </div>
@@ -44,19 +58,7 @@
     <h4>Featured Blog</h4>
     <div class="row">
         <div class="col-md-8">
-            <?php
-            $query = "SELECT * FROM posts ORDER BY posts_id DESC LIMIT 1";
-            $posts = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_assoc($posts)) {
-                $post_id = $row['posts_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
-                $post_content = $row['post_content'];
-                $post_image = $row['post_image'];
-                $post_tag = $row['post_tag'];
-            ?>
             <div class="card mb-5 open-post">
                 <div class="img-container">
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
@@ -77,18 +79,18 @@
         <div class="col-md-8">
             <h4>Latest Blog</h4>
             <?php
-            $query = "SELECT * FROM posts ORDER BY posts_id ASC LIMIT 3";
-            $posts = mysqli_query($conn, $query);
+                $query = "SELECT * FROM posts ORDER BY posts_id ASC LIMIT 3";
+                $posts = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_assoc($posts)) {
-                $post_id = $row['posts_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
-                $post_content = $row['post_content'];
-                $post_image = $row['post_image'];
-                $post_tag = $row['post_tag'];
-            ?>
+                while ($row = mysqli_fetch_assoc($posts)) {
+                    $post_id = $row['posts_id'];
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_author'];
+                    $post_date = $row['post_date'];
+                    $post_content = $row['post_content'];
+                    $post_image = $row['post_image'];
+                    $post_tag = $row['post_tag'];
+                ?>
             <div class="card mb-5 open-post">
                 <div class="img-container">
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
@@ -111,19 +113,4 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 <?php include 'includes/footer.php'; ?>
-
-<script>
-// var posts = document.querySelectorAll(".open-post").length;
-
-// var p_id = document.querySelectorAll('.open-post');
-// var r1 = p_id.closest("input").value;
-
-
-// for (var i = 0; i < posts; i++) {
-//     document.querySelectorAll(".open-post")[i].addEventListener("click", function handleClick() {
-//         window.location.href = "post.php?p_id=" + r1 + "";
-//     });
-// }
-</script>
