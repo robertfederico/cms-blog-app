@@ -123,7 +123,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="comments.php">
                         <i class="fa fa-calendar"></i>
                         <span>Comments</span>
                     </a>
