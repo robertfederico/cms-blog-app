@@ -42,9 +42,38 @@
     </div>
 
     <div class="container">
-        <div class="col-lg-8">
-            <div class="text-justify"><?php echo $post_content; ?>
+        <div class="col-lg-10">
+            <div class="text-justify mb-5"><?php echo $post_content; ?>
 
+            </div>
+            <div class="card shadow-sm comment-section border-0">
+                <?php
+                    if (isset($_POST['submit_comment']))
+
+                        echo  $_POST['comment_author'];
+
+                    ?>
+                <div class="card-header bg-transparent border-0 pt-5">
+                    <h5 class="text-center text-uppercase">Leave a Comment:</h5>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <label for="">Author</label>
+                            <input name="comment_author" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input name="comment_email" type="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Comment</label>
+                            <textarea name="comment" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" name="submit_comment" class="btn btn-primary">Submit
+                            Comment</button>
+                    </form>
+                </div>
             </div>
         </div>
 
