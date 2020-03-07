@@ -12,7 +12,7 @@
 
                 $search = $_POST['search'];
 
-                $query = "SELECT * FROM posts WHERE post_tag LIKE '%$search%' ";
+                $query = "SELECT * FROM posts WHERE post_tag LIKE '%$search%' AND post_status = 'Published'";
                 $search_query = mysqli_query($conn, $query);
 
                 if (!$search_query) {
