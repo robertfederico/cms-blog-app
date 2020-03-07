@@ -24,9 +24,9 @@
                                 </div>
                             </form>
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
-                                <li class="nav-item"><a class="nav-link login-btn" href="#">Login</a></li>
+                                <li class="nav-item"><a class="nav-link login-btn" href="#" data-toggle="modal"
+                                        data-target="#loginModal">Login</a>
                             </ul>
                         </div>
                     </div>
@@ -59,3 +59,30 @@
         </div>
     </div>
 </header>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="includes/login.php" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username or Email</label>
+                        <input type="text" name="username" id="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="username" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="login">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
