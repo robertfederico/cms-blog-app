@@ -11,7 +11,7 @@ if (isset($_POST['create_post'])) {
     $post_tags = $_POST['post_tags'];
     $post_content = mysqli_real_escape_string($conn, $_POST['post_content']);
     $post_date = date('Y-m-d');
-    $post_comment_count = 1;
+    $post_comment_count = 0;
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -51,6 +51,11 @@ if (isset($_POST['create_post'])) {
             </div>
             <div class="form-group">
                 <label for="cat_title">Post Status</label>
+                <select name="post_status">
+                    <option value="">Select</option>
+                    <option value="Published">Published</option>
+                    <option value="Draft">Draft</option>
+                </select>
                 <input name="post_status" type="text" class="form-control">
             </div>
             <div class="form-group">
