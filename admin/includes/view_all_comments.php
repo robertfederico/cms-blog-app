@@ -43,16 +43,18 @@
                     <td>{$comment_content}</td>
                     <td>{$comment_email}</td>
                     <td>{$comment_status}</td>
-                    <td>{$post_title}</td>
+                    <td>
+                        <a href='../post.php?p_id=$comment_post_id'>{$post_title}</a>
+                    </td>
                     <td>{$comment_date}</td>
                     <td>
-                        <a href='view-posts.php?delete={$comment_id}' class='btn btn-primary btn-sm rounded-circle'>
+                        <a href='comments.php?approved={$comment_id}' class='btn btn-primary btn-sm rounded-circle'>
                             <i class='fas fa-thumbs-up'></i>
                         </a>
-                        <a href='view-posts.php?delete={$comment_id}' class='btn btn-info btn-sm rounded-circle'>
+                        <a href='comments.php?unapproved={$comment_id}' class='btn btn-info btn-sm rounded-circle'>
                             <i class='fas fa-thumbs-down'></i>
                         </a>
-                        <a href='view-posts.php?delete={$comment_id}' class='btn btn-danger btn-sm rounded-circle'>
+                        <a href='comments.php?delete={$comment_id}' class='btn btn-danger btn-sm rounded-circle'>
                             <i class='fas fa-trash'></i>
                         </a>
                     </td>
@@ -64,12 +66,44 @@
 </table>
 
 <?php
-// if (isset($_GET['delete'])) {
-//     $posts_id = $_GET['delete'];
+if (isset($_GET['delete'])) {
+    $comment_id = $_GET['delete'];
 
-//     $delete_query = "DELETE FROM posts WHERE posts_id ={$posts_id}";
+    $delete_query = "DELETE FROM comments WHERE comment_id ={$comment_id}";
+    $delete_res = mysqli_query($conn, $delete_query);
+    if (!$delete_res) {
+        die('Failed' . mysqli_error($conn));
+    } else {
+        $query_update_post = "UPDATE posts 
+        SET post_comment_count = post_comment_count - 1 WHERE posts_id = $comment_id";
+        $update_post = mysqli_query($conn, $query_update_post);
+        header("Location: comments.php");
+    }
+}
 
-//     confirm_query($delete_query);
-//     header("Location: view-posts.php");
-// }
+if (isset($_GET['unapproved'])) {
+
+    $comment_id = $_GET['unapproved'];
+
+    $delete_query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id ={$comment_id}";
+    $delete_res = mysqli_query($conn, $delete_query);
+    if (!$delete_res) {
+        die('Failed' . mysqli_error($conn));
+    } else {
+        header("Location: comments.php");
+    }
+}
+
+if (isset($_GET['approved'])) {
+
+    $comment_id = $_GET['approved'];
+
+    $delete_query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id ={$comment_id}";
+    $delete_res = mysqli_query($conn, $delete_query);
+    if (!$delete_res) {
+        die('Failed' . mysqli_error($conn));
+    } else {
+        header("Location: comments.php");
+    }
+}
 ?>
