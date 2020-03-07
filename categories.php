@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-8">
             <?php
-            $query = "SELECT * FROM posts WHERE post_cat_id=$post_category_id";
+            $query = "SELECT * FROM posts WHERE post_cat_id=$post_category_id AND post_status = 'Published'";
             $posts = mysqli_query($conn, $query);
             if (mysqli_num_rows($posts) > 0) {
                 while ($row = mysqli_fetch_assoc($posts)) {
