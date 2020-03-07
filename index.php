@@ -3,7 +3,7 @@
 <?php include 'includes/navbar.php' ?>
 <!-- Page Content -->
 <?php
-$query = "SELECT * FROM posts ORDER BY posts_id DESC LIMIT 1";
+$query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id DESC LIMIT 1";
 $posts = mysqli_query($conn, $query);
 
 while ($row = mysqli_fetch_assoc($posts)) {
@@ -79,7 +79,7 @@ while ($row = mysqli_fetch_assoc($posts)) {
         <div class="col-md-8">
             <h4>Latest Blog</h4>
             <?php
-                $query = "SELECT * FROM posts ORDER BY posts_id ASC LIMIT 3";
+                $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id ASC LIMIT 3";
                 $posts = mysqli_query($conn, $query);
 
                 while ($row = mysqli_fetch_assoc($posts)) {
