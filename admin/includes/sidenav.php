@@ -20,15 +20,36 @@
                 <span class="user-name">
                     <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        John <strong>Smith</strong>
+                        <?php
+
+                        $user_id = $_SESSION['user_id'];
+                        $display_profile = "SELECT * FROM users WHERE `user_id` = $user_id";
+                        $result = mysqli_query($conn, $display_profile);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $user_firstname = $row['user_firstname'];
+                            $user_lastname = $row['user_lastname'];
+                            $user_role = $row['user_role'];
+
+                            echo $user_firstname;
+                            echo '<strong>';
+                            echo ' ';
+                            echo $user_lastname;
+                            echo '</strong>';
+                        ?>
+
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="profile.php">Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../index.php">Logout</a>
+                        <a class="dropdown-item" href="includes/logout.php">Logout</a>
                     </div>
                 </span>
-                <span class="user-role">Administrator</span>
+                <span class="user-role">
+                    <?php
+                            echo $user_role;
+                        }
+                ?>
+                </span>
                 <span class="user-status">
                     <i class="fa fa-circle"></i>
                     <span>Online</span>
