@@ -1,13 +1,16 @@
 <?php
 ob_start();
+session_start();
+
 include '../includes/db_conn.php';
 include 'functions.php';
 
-// session_start();
-// if (isset($_SESSION['user_role'])) {
-// } else {
-//     header("Location: ../index.php");
-// }
+if (!isset($_SESSION['user_role'])) {
+    // if ($_SESSION['user_role'] !== "Admin") {
+    //     header("Location: ../index.php");
+    // }
+    header("Location: ../index.php");
+}
 ?>
 
 
@@ -36,7 +39,6 @@ include 'functions.php';
 
     <!-- Custom styles for this template -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-
 </head>
 
 <body>
