@@ -95,6 +95,53 @@ ClassicEditor
     })
  </script>
 
+
+
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script type="text/javascript">
+google.charts.load('current', {
+    packages: ['corechart', 'bar']
+});
+google.charts.setOnLoadCallback(load_monthwise_data);
+
+function load_monthwise_data(year, title) {
+    var temp_title = title + ' ' + year + '';
+    $.ajax({
+        url: "getData.php",
+        dataType: "JSON",
+        async: false,
+        success: function(data) {
+            drawMonthwiseChart(data);
+        }
+    });
+}
+
+function drawMonthwiseChart(chart_data) {
+    var jsonData = chart_data;
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Text');
+    data.addColumn('number', 'Count');
+    $.each(jsonData, function(i, jsonData) {
+        var month = jsonData.text;
+        var profit = parseFloat($.trim(jsonData.count));
+        data.addRows([
+            [month, profit]
+        ]);
+    });
+    var options = {
+        // hAxis: {
+        //     title: "Months"
+        // },
+        // vAxis: {
+        //     title: 'Profit'
+        // }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
+    chart.draw(data, options);
+}
+ </script>
  </body>
 
  </html>
