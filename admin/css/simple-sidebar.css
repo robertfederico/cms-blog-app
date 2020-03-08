@@ -537,3 +537,11 @@ body {
 li a.active {
   color: #16c7ff !important;
 }
+
+#profile .row .card .img-fluid {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
