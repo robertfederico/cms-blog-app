@@ -1,19 +1,18 @@
 <?php include 'includes/header.php'; ?>
 
+<!-- Displat posts based on author or user -->
+
 <div class="page-wrapper chiller-theme toggled">
 
     <?php include 'includes/sidenav.php'; ?>
     <!-- sidebar-wrapper  -->
-
-
-
     <main class="page-content">
         <div class="container-fluid">
             <h1>Dashboard</h1>
             <hr class="divider">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body bg-primary text-white">
                             <div class="row">
                                 <div class="col-md-3">
@@ -43,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body bg-success text-white">
                             <div class="row">
                                 <div class="col-md-3">
@@ -73,7 +72,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body bg-warning text-white">
                             <div class="row">
                                 <div class="col-md-3">
@@ -103,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body text-white bg-danger">
                             <div class="row">
                                 <div class="col-md-3">
@@ -134,10 +133,10 @@
                 </div>
             </div>
             <!-- chart -->
-            <div class="card mt-5">
+            <div class="card mt-5 shadow">
                 <div class="card-body">
                     <div id="columnchart_material" style="width: 100%; height: 500px;"></div>
-         
+
                 </div>
             </div>
         </div>
