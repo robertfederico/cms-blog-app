@@ -1,4 +1,4 @@
-<header class="main-nav shadow-sm">
+<header class="main-nav shadow sticky-top">
     <div class="container-fluid p-0">
         <div class="row">
             <div class="col-md-12 col-xs-12">
@@ -23,11 +23,28 @@
                                     </div>
                                 </div>
                             </form>
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
-                                <li class="nav-item"><a class="nav-link login-btn" href="#" data-toggle="modal"
-                                        data-target="#loginModal">Login</a>
-                            </ul>
+                            <?php
+                            session_start();
+                            if ($_SESSION['username']) {
+                                echo
+                                    "  <ul class='navbar-nav ml-auto'>
+                                        <li class='nav-item'>
+                                        <a class='nav-link' href='admin'><span class='fas fa-tachometer'>
+                                        </span> {$_SESSION['f_name']} {$_SESSION['l_name']}
+                                        </a>
+                                        </li>
+                                    </ul>";
+                            } else {
+                                echo '
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item"><a class="nav-link " href="#">Register</a></li>
+                                    <li class="nav-item"><a class="btn btn-success btn-sm text-white" href="#"
+                                            data-toggle="modal" data-target="#loginModal"><i class="fas fa-lock"></i>
+                                            Login</a> </li> 
+                                </ul>';
+                            }
+
+                            ?>
                         </div>
                     </div>
                 </nav>
@@ -78,9 +95,9 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="username" class="form-control" required>
+                        <input type="password" name="password" id="password" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" name="login">Login</button>
+                    <button type="submit" class="btn btn-primary" id="login" name="login">Login</button>
                 </form>
             </div>
         </div>
