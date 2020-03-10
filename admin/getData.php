@@ -1,22 +1,40 @@
 <?php
 require "../includes/db_conn.php";
-// This is just an example of reading server side data and sending it to the client.
-// It reads a json formatted text file and outputs it.
 
-// $string = file_get_contents("sampleData.json");
-// echo $string;
+$query = "SELECT * FROM posts";
+$result = mysqli_query($conn, $query);
+$total_post_count = mysqli_num_rows($result);
 
+$query1 = "SELECT * FROM posts WHERE post_status = 'Published'";
+$result1 = mysqli_query($conn, $query1);
+$post_count = mysqli_num_rows($result1);
 
-//echo "['{$element_text[0]}'" . "{$element_count[0]}]";
+$query2 = "SELECT * FROM comments";
+$result2 = mysqli_query($conn, $query2);
+$comment_count = mysqli_num_rows($result2);
 
-$query1 = "SELECT * FROM chart_data";
-$result = mysqli_query($conn, $query1);
-foreach ($result as $row) {
+$query3 = "SELECT * FROM users WHERE user_role ='Subscriber'";
+$result3 = mysqli_query($conn, $query3);
+$users_count = mysqli_num_rows($result3);
+
+$query4 = "SELECT * FROM categories";
+$result4 = mysqli_query($conn, $query4);
+$categories_count = mysqli_num_rows($result4);
+
+$query5 = "SELECT * FROM posts WHERE post_status = 'Draft'";
+$result5 = mysqli_query($conn, $query5);
+$post_count_draft = mysqli_num_rows($result5);
+
+$element_text = ['Total Posts', 'Published Posts', 'Draft Posts', 'Comments', 'Subscribers    ', 'Categories'];
+$element_value = [$total_post_count, $post_count, $post_count_draft, $comment_count, $users_count, $categories_count];
+
+foreach (array_combine($element_text, $element_value) as $text => $value) {
     $output[] = array(
-        'text'   => $row["element_text"],
-        'count'  => $row["element_value"],
+        'text'   => $text,
+        'count'  => $value,
     );
 }
+
 echo json_encode($output);
 
 
