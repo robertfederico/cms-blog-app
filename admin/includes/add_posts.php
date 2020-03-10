@@ -24,54 +24,65 @@ if (isset($_POST['create_post'])) {
 
 ?>
 <div class="row">
-    <div class="col-md-9 col-xs 12">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="cat_title">Post Title</label>
-                <input name="post_title" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Post Category Id</label>
-                <select name="post_category_id" class="form-control">
-                    <?php
-                    $query = "SELECT * FROM categories";
-                    $category_query = mysqli_query($conn, $query);
-                    echo "<option value=''>Select Category</option>";
-                    while ($row = mysqli_fetch_assoc($category_query)) {
-                        $category_id = $row['category_id'];
-                        $category_title = $row['category_title'];
-                        echo "<option value='{$category_id}'>{$category_title}</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Post Author</label>
-                <input name="post_author" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Post Status</label>
-                <select name="post_status">
-                    <option value="">Select</option>
-                    <option value="Published">Published</option>
-                    <option value="Draft">Draft</option>
-                </select>
-                <input name="post_status" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Post Image</label>
-                <input name="post_image" type="file" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Post Tags</label>
-                <input name="post_tags" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="">Post Content</label>
-                <textarea name="post_content" id="post_content" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" name="create_post" type="submit">Add Post</button>
+    <div class="col-md-12 col-xs 12">
+        <form action="" method="POST" class="pl-2" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="cat_title">Post Title</label>
+                        <input name="post_title" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="cat_title">Post Category</label>
+                        <select name="post_category_id" class="form-control">
+                            <?php
+                            $query = "SELECT * FROM categories";
+                            $category_query = mysqli_query($conn, $query);
+                            echo "<option value=''>Select Category</option>";
+                            while ($row = mysqli_fetch_assoc($category_query)) {
+                                $category_id = $row['category_id'];
+                                $category_title = $row['category_title'];
+                                echo "<option value='{$category_id}'>{$category_title}</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cat_title">Post Author</label>
+                        <input name="post_author" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="cat_title">Post Status</label>
+                        <select name="post_status" class="form-control">
+                            <option value="">Select</option>
+                            <option value="Published">Published</option>
+                            <option value="Draft">Draft</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cat_title">Post Image</label>
+                        <div class="card border-dark p-1 mb-2">
+                            <img id="img" src="../images/upload.png" class="img-fluid" alt="image">
+                        </div>
+                        <input name="post_image" id="update_post_image" type="file" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="cat_title">Post Tags</label>
+                        <input name="post_tags" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="">Post Content</label>
+                        <textarea name="post_content" id="post_content" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button class="btn btn-primary" name="create_post" type="submit">Add Post</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
