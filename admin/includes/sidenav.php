@@ -77,19 +77,19 @@
                     <span>General</span>
                 </li>
                 <li>
-                    <a class="active" href="index.php">
+                    <a class="sidebar-btn" href="index.php">
                         <i class="fa fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="categories.php">
+                    <a class="sidebar-btn" href="categories.php">
                         <i class="fas fa-list"></i>
                         <span>categories</span>
                     </a>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="#">
+                    <a class="sidebar-btn" href="#">
                         <i class="far fa-gem"></i>
                         <span>Posts</span>
                     </a>
@@ -105,7 +105,7 @@
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="#">
+                    <a class="sidebar-btn" href="#">
                         <i class="fas fa-users"></i>
                         <span>Users</span>
                     </a>
@@ -121,7 +121,7 @@
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="#">
+                    <a class="sidebar-btn" href="#">
                         <i class="fa fa-chart-line"></i>
                         <span>Charts</span>
                     </a>
@@ -144,7 +144,7 @@
                 </li>
 
                 <li>
-                    <a href="comments.php">
+                    <a class="sidebar-btn" href="comments.php">
                         <i class="fa fa-calendar"></i>
                         <span>Comments</span>
                     </a>
