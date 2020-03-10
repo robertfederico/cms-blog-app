@@ -1,6 +1,6 @@
 <!-- Fix this tomorrow -->
 
-<table id="post_table" class="table table-hover text-nowrap">
+<table id="comments_table" class="table table-hover text-nowrap">
     <thead>
         <tr>
             <th>Id</th>
