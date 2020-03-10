@@ -21,8 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['l_name'] = $row['user_lastname'];
         $_SESSION['user_role'] = $row['user_role'];
         $_SESSION['user_email'] = $row['user_email'];
-        header("Location: ../admin/index.php");
+
+        echo 'success';
+        //  header("Location: ../admin/index.php");
     } else {
-        header("Location: ../index.php");
+        //  header("Location: ../index.php");
     }
 }

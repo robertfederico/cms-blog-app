@@ -370,3 +370,49 @@ p.author {
 .comment-section {
   background: #f5f6f8;
 }
+
+/* Alertify Custom Styles */
+.ajs-message,
+.ajs-visible {
+  -webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+
+  /* easeOutBack */
+}
+
+.ajs-hidden {
+  -webkit-transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  -moz-transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  -ms-transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  -o-transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  transition: all 250ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  /* easeInBack */
+}
+
+.ajs-hidden {
+  -webkit-transform: translate(0, -150px);
+  -moz-transform: translate(0, -150px);
+  -ms-transform: translate(0, -150px);
+  -o-transform: translate(0, -150px);
+  transform: translate(0, -150px);
+  opacity: 0;
+  display: none;
+}
+
+.ajs-error {
+  background: #fe1a00;
+  background: rgba(254, 26, 0, 0.9);
+  color: #fff;
+}
+
+.ajs-warning {
+  background: #5cb811;
+  background: rgba(92, 184, 17, 0.9);
+  color: #222;
+}
