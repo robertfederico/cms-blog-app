@@ -7,8 +7,50 @@
  <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
 
  <script>
+$('#comments_table').dataTable();
 $('#categories').dataTable();
-$('#post_table').dataTable();
+$("#post_table").dataTable({
+    processing: true,
+    serverSide: true,
+    ajax: {
+        url: 'fetch-data/fetch-posts.php',
+        type: 'GET'
+    },
+    'columnDefs': [{
+        'orderable': false,
+        'targets': 0
+    }],
+    'aaSorting': [
+        [1, 'asc']
+    ]
+});
+$("#selectAll").click(function() {
+    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+});
+ </script>
+
+ <!-- script for update post image -->
+ <script>
+$(function() {
+    $('#update_post_image').change(function() {
+        var input = this;
+        var url = $(this).val();
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext ==
+                "jpg")) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            $('#img').attr('src', '../images/');
+        }
+    });
+
+});
  </script>
 
  <!-- Menu Toggle Script -->
@@ -87,6 +129,7 @@ $('.edit_posts').on('click', function() {
 });
  </script>
 
+ <!-- add posts -->
  <script>
 ClassicEditor
     .create(document.querySelector('#post_content'))
@@ -95,18 +138,15 @@ ClassicEditor
     })
  </script>
 
-
-
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <!-- <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
  <script type="text/javascript">
 google.charts.load('current', {
     packages: ['corechart', 'bar']
 });
 google.charts.setOnLoadCallback(load_monthwise_data);
 
-function load_monthwise_data(year, title) {
-    var temp_title = title + ' ' + year + '';
+function load_monthwise_data() {
     $.ajax({
         url: "getData.php",
         dataType: "JSON",
@@ -120,7 +160,7 @@ function load_monthwise_data(year, title) {
 function drawMonthwiseChart(chart_data) {
     var jsonData = chart_data;
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Text');
+    data.addColumn('string', '');
     data.addColumn('number', 'Count');
     $.each(jsonData, function(i, jsonData) {
         var month = jsonData.text;
@@ -130,17 +170,83 @@ function drawMonthwiseChart(chart_data) {
         ]);
     });
     var options = {
-        // hAxis: {
-        //     title: "Months"
-        // },
-        // vAxis: {
-        //     title: 'Profit'
-        // }
+        chart: {
+            title: 'Statistics',
+            subtitle: 'Current count',
+        },
+        colors: ['#1b9e77'],
+        animation: {
+            duration: 5000,
+            easing: 'out',
+        }
+
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
-    chart.draw(data, options);
+    //var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
+    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
 }
+ </script>
+
+
+ <script>
+$(document).ready(function() {
+    $('ul li a').click(function() {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+        localStorage.setItem('active', $(this).parent().index());
+    });
+
+    var ele = localStorage.getItem('active');
+    $(' ul li:eq(' + ele + ')').find('a').addClass('active');
+});
+ </script>
+
+ <!-- change datatable value -->
+ <script>
+$(document).on('change', '#post_status', function() {
+    var post_status = $("#post_status").val();
+
+    if (post_status != "") {
+        $("#post_table").dataTable().fnDestroy();
+        $('#post_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: 'fetch-data/fetch-posts.php',
+                type: 'POST',
+                data: {
+                    post_status: post_status
+                }
+            },
+            'columnDefs': [{
+                'orderable': false,
+                'targets': 0
+            }],
+            'aaSorting': [
+                [1, 'asc']
+            ]
+        });
+    } else if (post_status == 'view') {
+        $("#post_table").dataTable().fnDestroy();
+        $("#post_table").dataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: 'fetch-data/fetch-posts.php',
+                type: 'GET'
+            },
+            'columnDefs': [{
+                'orderable': false,
+                'targets': 0
+            }],
+            'aaSorting': [
+                [1, 'asc']
+            ]
+        });
+    }
+
+});
  </script>
  </body>
 
