@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_role'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>CMS | Admin</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
