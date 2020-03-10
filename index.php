@@ -3,62 +3,94 @@
 <?php include 'includes/navbar.php' ?>
 <!-- Page Content -->
 <?php
-$query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id DESC LIMIT 1";
-$posts = mysqli_query($conn, $query);
+function make_query($conn)
+{
+    $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id DESC LIMIT 3";
+    $result = mysqli_query($conn, $query);
+    return $result;
+}
 
-while ($row = mysqli_fetch_assoc($posts)) {
-    $post_id = $row['posts_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_date = $row['post_date'];
-    $post_image = $row['post_image'];
-    $post_tag = $row['post_tag'];
-    $post_content = substr($row['post_content'], 0, 100);
+function make_slide_indicators($conn)
+{
+    $output = '';
+    $count = 0;
+    $result = make_query($conn);
+    while ($row = mysqli_fetch_array($result)) {
+        if ($count == 0) {
+            $output .= '<li data-target="#carouselExampleControls" data-slide-to="' . $count . '" class="active"></li>';
+        } else {
+            $output .= '<li data-target="#carouselExampleControls" data-slide-to="' . $count . '"></li>';
+        }
+        $count = $count + 1;
+    }
+    return $output;
+}
 
+function make_slides($conn)
+{
+    $output = '';
+    $count = 0;
+    $result = make_query($conn);
+    while ($row = mysqli_fetch_array($result)) {
+        if ($count == 0) {
+            $output .= '<div class="carousel-item active">';
+        } else {
+            $output .= '<div class="carousel-item">';
+        }
+        $output .= '
+                <img src="images/' . $row["post_image"] . '" class="d-block w-100" />
+                <div class="carousel-caption">
+                    <h3>' . $row["post_title"] . '</h3>
+                    <h5>by : ' . $row["post_author"] . '</h5>
+                </div>
+            </div>
+                ';
+        $count = $count + 1;
+    }
+    return $output;
+}
 ?>
-<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        <?php
+        echo make_slide_indicators($conn);
+        ?>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="images/<?php echo $post_image; ?>" class="d-block w-100">
-            <div class="carousel-caption d-none d-md-block">
-                <h5> <?php echo $post_title; ?></h5>
-                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://source.unsplash.com/random" class=" d-block w-100">
-            <div class="carousel-caption d-none d-md-block">
-                <h5> <?php echo $post_title; ?></h5>
-                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://source.unsplash.com/daily" class="d-block w-100">
-            <div class="carousel-caption d-none d-md-block">
-                <h5> <?php echo $post_title; ?></h5>
-                <p> <?php echo $post_author; ?> | <span><?php echo $post_date; ?> </span></p>
-            </div>
-        </div>
+        <?php
+        echo make_slides($conn);
+        ?>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+
+<!-- featured blog -->
 <div class="container mt-5">
     <h4>Featured Blog</h4>
     <div class="row">
-        <div class="col-md-8">
+        <?php
+        $query = "SELECT * FROM posts WHERE post_status = 'Published' AND post_comment_count > 2 LIMIT 1";
+        $posts = mysqli_query($conn, $query);
 
+        while ($row = mysqli_fetch_assoc($posts)) {
+            $post_id = $row['posts_id'];
+            $post_title = $row['post_title'];
+            $post_author = $row['post_author'];
+            $post_date = $row['post_date'];
+            $post_content = $row['post_content'];
+            $post_image = $row['post_image'];
+            $post_tag = $row['post_tag'];
+        ?>
+        <div class="col-md-8">
             <div class="card mb-5 open-post">
                 <div class="img-container">
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
@@ -72,25 +104,25 @@ while ($row = mysqli_fetch_assoc($posts)) {
                     </a>
                 </div>
             </div>
-            <?php } ?>
-
         </div>
+        <?php } ?>
+
         <?php include 'includes/sidebar.php'; ?>
         <div class="col-md-8">
             <h4>Latest Blog</h4>
             <?php
-                $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id ASC LIMIT 3";
-                $posts = mysqli_query($conn, $query);
+            $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id ASC LIMIT 3";
+            $posts = mysqli_query($conn, $query);
 
-                while ($row = mysqli_fetch_assoc($posts)) {
-                    $post_id = $row['posts_id'];
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $post_date = $row['post_date'];
-                    $post_content = $row['post_content'];
-                    $post_image = $row['post_image'];
-                    $post_tag = $row['post_tag'];
-                ?>
+            while ($row = mysqli_fetch_assoc($posts)) {
+                $post_id = $row['posts_id'];
+                $post_title = $row['post_title'];
+                $post_author = $row['post_author'];
+                $post_date = $row['post_date'];
+                $post_content = $row['post_content'];
+                $post_image = $row['post_image'];
+                $post_tag = $row['post_tag'];
+            ?>
             <div class="card mb-5 open-post">
                 <div class="img-container">
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
