@@ -40,8 +40,8 @@ function make_slides($conn)
         $output .= '
                 <img src="images/' . $row["post_image"] . '" class="d-block w-100" />
                 <div class="carousel-caption">
+                      <h6>' . $row["post_tag"] . '</h6>
                     <h3>' . $row["post_title"] . '</h3>
-                    <h5>by : ' . $row["post_author"] . '</h5>
                 </div>
             </div>
                 ';
@@ -51,7 +51,7 @@ function make_slides($conn)
 }
 ?>
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
         <?php
         echo make_slide_indicators($conn);
@@ -111,6 +111,11 @@ function make_slides($conn)
         <div class="col-md-8">
             <h4>Latest Blog</h4>
             <?php
+            $allcount_query = "SELECT count(*) as allcount FROM posts";
+            $allcount_result = mysqli_query($conn, $allcount_query);
+            $allcount_fetch = mysqli_fetch_array($allcount_result);
+            $allcount = $allcount_fetch['allcount'];
+
             $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id ASC LIMIT 3";
             $posts = mysqli_query($conn, $query);
 
@@ -123,7 +128,8 @@ function make_slides($conn)
                 $post_image = $row['post_image'];
                 $post_tag = $row['post_tag'];
             ?>
-            <div class="card mb-5 open-post">
+            <div class="card mb-5 open-post post" id="post_<?php echo $post_id; ?>">
+                <input type="hidden" id="all" value="<?php echo $allcount; ?>">
                 <div class="img-container">
                     <a href="post.php?p_id=<?php echo $post_id; ?>">
                         <img class="img-card" src="images/<?php echo $post_image;  ?>" />
@@ -137,11 +143,14 @@ function make_slides($conn)
                 </div>
             </div>
             <?php } ?>
+            <input type="hidden" id="row" value="0">
+            <input type="hidden" id="all" value="<?php echo $allcount; ?>">
             <!-- Pager -->
             <div class="d-flex justify-content-between mb-5">
                 <a class="btn btn-primary" href="#">&larr; Older</a>
                 <a class="btn btn-primary" href="#">Newer &rarr;</a>
             </div>
+
         </div>
     </div>
 </div>
