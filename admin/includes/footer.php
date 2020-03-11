@@ -7,27 +7,46 @@
  <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
 
  <script>
-$('#comments_table').dataTable();
-$('#categories').dataTable();
-$("#post_table").dataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-        url: 'fetch-data/fetch-posts.php',
-        type: 'GET'
-    },
-    'columnDefs': [{
-        'orderable': false,
-        'targets': 0
-    }],
-    'aaSorting': [
-        [1, 'asc']
-    ]
-});
-$("#selectAll").click(function() {
-    $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+$(document).ready(function() {
 
-});
+    $('#comments_table').dataTable();
+    $('#categories').dataTable();
+    $("#post_table").dataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: 'fetch-data/fetch-posts.php',
+            type: 'GET'
+        },
+        'columnDefs': [{
+            'orderable': false,
+            'targets': 0
+        }],
+        'aaSorting': [
+            [1, 'asc']
+        ]
+    });
+
+    $("#selectAll").click(function() {
+        // if (this.checked) {
+        //     $('.checkbox').each(function() {
+        //         this.checked = true;
+        //     })
+        // } else {
+        //     $('.checkbox').each(function() {
+        //         this.checked = false;
+        //     })
+        // }
+
+        $("#selectAll").click(function() {
+            $("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+        });
+
+    });
+
+
+})
  </script>
 
  <!-- script for update post image -->
