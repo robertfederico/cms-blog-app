@@ -26,7 +26,6 @@ function viewPosts()
     $totalData = mysqli_num_rows($query);
 
     $totalFilter = $totalData;
-
     //Search
     $sql = "SELECT * FROM posts";
     if (!empty($request['search']['value'])) {
@@ -37,7 +36,6 @@ function viewPosts()
     }
     $query = mysqli_query($conn, $sql);
     $totalData = mysqli_num_rows($query);
-
     //Order
     $sql .= " ORDER BY " . $col[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'] . "  LIMIT " .
         $request['start'] . "  ," . $request['length'] . "  ";
@@ -49,13 +47,12 @@ function viewPosts()
     while ($row = mysqli_fetch_array($query)) {
         $subdata = array();
         $subdata[] = "<label class='custom-control material-checkbox'>
-                        <input type='checkbox' class='material-control-input'name='checkboxArray[]' value='{$row[0]}'>
+                        <input type='checkbox' class='material-control-input checkbox'name='checkboxArray[]' value='{$row[0]}'>
                         <span class='material-control-indicator'></span>
                     </label>";
         $subdata[] = $posts_row_id;
         $subdata[] = $row[3];
-        $subdata[] = $row[2];
-
+        $subdata[] = "<a href='../post.php?p_id={$row[0]}'>{$row[2]}</a>";
         //category
         $query_category = "SELECT * FROM categories WHERE category_id ={$row[1]}";
         $fetch_result  = mysqli_query($conn, $query_category);
@@ -65,6 +62,7 @@ function viewPosts()
         }
 
         $subdata[] = $category_title;
+
         $subdata[] = $row[9];
         $subdata[] = "<img class='img-fluid' src='../images/{$row[5]}'>";
         $subdata[] = $row[7];
@@ -112,7 +110,6 @@ if (isset($_POST['post_status'])) {
 
         $request = $_REQUEST;
 
-
         $sql = "SELECT * FROM posts WHERE post_status = '$post_status'";
 
         $query = mysqli_query($conn, $sql);
@@ -120,7 +117,6 @@ if (isset($_POST['post_status'])) {
         $totalData = mysqli_num_rows($query);
 
         $totalFilter = $totalData;
-
         //Search
         $sql = "SELECT * FROM posts WHERE post_status = '$post_status'";
         if (!empty($request['search']['value'])) {
@@ -143,13 +139,12 @@ if (isset($_POST['post_status'])) {
         while ($row = mysqli_fetch_array($query)) {
             $subdata = array();
             $subdata[] = "<label class='custom-control material-checkbox'>
-                            <input type='checkbox' class='material-control-input' name='checkboxArray[]' value='{$row[0]}'>
+                            <input type='checkbox' class='material-control-input checkbox' name='checkboxArray[]' value='{$row[0]}'>
                             <span class='material-control-indicator'></span>
                         </label>";
             $subdata[] = $posts_row_id;
-            $subdata[] = $row[3];
+            $subdata[] = "<a href='../post.php?p_id={$row[0]}'>{$row[2]}</a>";
             $subdata[] = $row[2];
-
             //category
             $query_category = "SELECT * FROM categories WHERE category_id ={$row[1]}";
             $fetch_result  = mysqli_query($conn, $query_category);
