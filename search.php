@@ -3,6 +3,7 @@
 <?php include "includes/navbar.php"; ?>
 
 <!-- Page Content -->
+<div id="start_change"></div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8">
