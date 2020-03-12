@@ -43,8 +43,10 @@
 
     <div class="container">
         <div class="col-lg-10">
-            <div class="text-justify mb-5"><?php echo $post_content; ?>
-
+            <h6 class="text-uppercase">Tags</h6>
+            <h6 class="text-black-50"><u><?php echo $post_tag; ?></u></h6>
+            <div class="mb-5 text-content">
+                <?php echo $post_content; ?>
             </div>
             <div class="card shadow-sm comment-section border-0 mb-5">
                 <?php
@@ -134,7 +136,6 @@
                 }
                 ?>
         </div>
-
         <?php
     }
 
