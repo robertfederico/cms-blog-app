@@ -62,7 +62,6 @@
         </div>
         <div class="col-md-12">
             <div class="row">
-
                 <?php }
             } else if ($post_category_id == 'all') {
                 $query = "SELECT * FROM categories";
@@ -73,16 +72,15 @@
                     $cat_image = $row['cat_image'];
                     ?>
                 <div class="col-md-4">
-                    <div class="card mb-5 open-post">
-                        <div class="caption mw-100 w-100">
-                            <a href="categories.php?category=<?php echo $category_id; ?>">
+                    <div class="card mb-4 category-container">
+                        <div class="category-caption">
+                            <a href="categories.php?category=<?php echo $category_id; ?>" class="category_link">
                                 <img src="images/<?php echo $cat_image; ?>" class="img-fluid" />
                                 <h5 class="cat-title"><?php echo $cat_title; ?></h5>
                             </a>
                         </div>
                     </div>
                 </div>
-
                 <?php
                 }
             } else {
