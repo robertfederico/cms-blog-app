@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_password = $row['user_password'];
     $user_name = $row['username'];
 
-    if ($username === $user_name && $password === $user_password) {
+    if (password_verify($password, $user_password)) {
         session_start();
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['username'] = $row['username'];
@@ -23,8 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_email'] = $row['user_email'];
 
         echo 'success';
-        //  header("Location: ../admin/index.php");
     } else {
-        //  header("Location: ../index.php");
+        echo 'Invalid password.';
     }
+
+    // if ($username === $user_name && $password === $user_password) {
+    //     session_start();
+    //     $_SESSION['user_id'] = $row['user_id'];
+    //     $_SESSION['username'] = $row['username'];
+    //     $_SESSION['f_name'] = $row['user_firstname'];
+    //     $_SESSION['l_name'] = $row['user_lastname'];
+    //     $_SESSION['user_role'] = $row['user_role'];
+    //     $_SESSION['user_email'] = $row['user_email'];
+
+    //     echo 'success';
+    // } else {
+    // }
 }

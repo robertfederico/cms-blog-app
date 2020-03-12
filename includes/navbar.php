@@ -131,7 +131,7 @@
                 </button>
             </div>
             <div class="modal-body p-5">
-                <form action="">
+                <form action="" id="register_form">
                     <div class="alert_reg">
                         <p class="closebtn">&times;</p>
                         <div class="text-center">

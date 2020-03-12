@@ -3,7 +3,7 @@
           <h4>Categories</h4>
           <div class="cat-container">
               <?php
-          $query = "SELECT * FROM categories";
+          $query = "SELECT * FROM categories LIMIT 6";
           $select_categories = mysqli_query($conn, $query);
 
           while ($row = mysqli_fetch_assoc($select_categories)) {
