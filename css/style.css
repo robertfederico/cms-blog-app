@@ -129,6 +129,50 @@ p.author {
   color: #fff;
 }
 
+/* categories */
+.category-container {
+  position: relative !important;
+  overflow: hidden !important;
+  height: 250px;
+}
+
+.category-container .category-caption{
+  overflow: hidden !important;
+  transition: transform 0.2s ease-in-out;
+  display: inline-block;
+  height: 250px;
+  width: 100%;
+}
+
+.category-container .category-caption a.category_link img.img-fluid {
+  overflow: hidden !important;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.2s ease-in-out;
+  filter: brightness(65%);
+}
+
+.category-container a.category_link:hover > img.img-fluid {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+.category-container h5.cat-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: relative;
+  bottom: 45px;
+  left: 5%;
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
 /*  ==================================Posts page ========================================*/
 .d-posts .image-container {
   background-size: cover;
@@ -310,3 +354,20 @@ header {
 
 }
 
+.carousel .carousel-controls { visibility: hidden; }
+.carousel:hover .carousel-controls { visibility: visible; }
+
+.carousel a.carousel-controls img.img-fluid{
+  height: 56px;
+  width: 56px;
+}
+
+.text-content{
+  font-size: 1.2rem !important;
+  color: #222;
+  line-height: 1.6;
+}
+.text-content h2 {
+  font-size: 2.5rem !important;
+  line-height: 1.3;
+}
