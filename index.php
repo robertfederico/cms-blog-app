@@ -5,7 +5,7 @@
 <?php
 function make_query($conn)
 {
-    $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id DESC LIMIT 3";
+    $query = "SELECT * FROM posts WHERE post_status = 'Published' ORDER BY posts_id DESC LIMIT 6";
     $result = mysqli_query($conn, $query);
     return $result;
 }
@@ -62,13 +62,11 @@ function make_slides($conn)
         echo make_slides($conn);
         ?>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+    <a class="carousel-control-prev carousel-controls" href="#carouselExampleControls" role="button" data-slide="prev">
+        <img src="images/icon/arrow-left.svg" alt="svg" class="img-fluid">
+    </a> <a class="carousel-control-next carousel-controls" href="#carouselExampleControls" role="button"
+        data-slide="next">
+        <img src="images/icon/arrow-right.svg" alt="svg" class="img-fluid">
     </a>
 </div>
 
