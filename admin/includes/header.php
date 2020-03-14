@@ -33,8 +33,6 @@ if (!isset($_SESSION['user_role'])) {
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
-    <!-- <script src="https://kit.fontawesome.com/2034693749.js" crossorigin="anonymous"></script> -->
-
     <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
     <!-- Custom styles for this template -->
