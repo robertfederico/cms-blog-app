@@ -15,12 +15,12 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
     <!-- <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.0.13/css/all.css"> -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
     #loader {
@@ -95,45 +95,6 @@
 
     #myDiv {
         display: none;
-    }
-
-    .alert_reg {
-        display: none;
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-        transition: opacity 0.6s;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .alert_log {
-        display: none;
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-        transition: opacity 0.6s;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: all .5s;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-
-    .modal-dialog {
-        width: 1000px !important;
     }
     </style>
 </head>
