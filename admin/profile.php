@@ -28,7 +28,7 @@ if (isset($_POST['update_profile'])) {
 
     <main class="page-content">
         <div class="container-fluid" id="profile">
-            <h2>Profile</h2>
+            <h5 class="title-header">Profile</h5>
             <?php
             if (isset($_SESSION['username'])) {
 
@@ -45,23 +45,13 @@ if (isset($_POST['update_profile'])) {
                     $user_role = $row['user_role'];
 
             ?>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card p-2 text-center">
-                        <img src="../images/heart.jpg" class="img-fluid shadow">
-                        <a href="#">change</a>
-                        <div class="mt-2">
-                            <h5 class="m-0"> <?php echo $user_firstname . ' ' . $user_lastname ?></h5>
-                            <h6 class="m-0"><?php echo $user_role ?></h6>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="title-container">
+                    <h5>Edit Profile</h5>
                 </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-transparent border-0">
-                            <h5>Edit Profile</h5>
-                        </div>
-                        <div class="card-body">
+                <div class="filter-container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto">
                             <form action="" method="POST">
                                 <div class="form-group">
                                     <div class="row">
@@ -108,15 +98,25 @@ if (isset($_POST['update_profile'])) {
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" name="update_profile">Save
+                                    <button type="submit" class="btn btn-primary custom-btn-primary w-25"
+                                        name="update_profile">Save
                                         Changes</button>
                                 </div>
                             </form>
                         </div>
+                        <div class="col-md-3 ml-auto mr-auto">
+                            <div class="card p-3 text-center">
+                                <img src="../images/heart.jpg" class="img-fluid shadow">
+                                <a href="#">change</a>
+                                <div class="mt-2">
+                                    <h5 class="m-0"> <?php echo $user_firstname . ' ' . $user_lastname ?></h5>
+                                    <h6 class="m-0"><?php echo $user_role ?></h6>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
             <?php
                 }
             }
