@@ -21,46 +21,67 @@ if (isset($_POST['create_user'])) {
 }
 
 ?>
-<div class="row">
-    <div class="col-md-9 col-xs 12">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="user_fname">First Name</label>
-                <input name="user_fname" type="text" class="form-control" required>
+<div class="title-container">
+    <h5>Add User</h5>
+</div>
+<div class="filter-container">
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="users.php" class="btn btn-primary custom-btn-primary float-right mb-3">Back to
+                    List</a>
             </div>
-            <div class="form-group">
-                <label for="user_lname">Last Name</label>
-                <input name="user_lname" type="text" class="form-control" required>
-            </div>
-
-            <!-- <div class="form-group">
+            <div class="col-md-8 col-xs 12 ml-auto mr-auto">
+                <div class="form-row mb-2">
+                    <label for="user_fname" class="col-form-label col-md-2">First Name</label>
+                    <div class="col-md-8">
+                        <input name="user_fname" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <label for="user_lname" class="col-form-label col-md-2">Last Name</label>
+                    <div class="col-md-8">
+                        <input name="user_lname" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
                 <label for="cat_title">User Image</label>
                 <input name="post_image" type="file" class="form-control">
             </div> -->
-            <div class="form-group">
-                <label for="user_role">Role</label>
-                <select name="user_role" class="form-control" required>
-                    <option value="">Select</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Subscriber">Subscriber</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input name="username" type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="user_email">Email</label>
-                <input name="user_email" type="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="cat_title">Password</label>
-                <input name="user_pword" type="password" class="form-control" required>
-            </div>
+                <div class="form-row mb-2">
+                    <label for="user_role" class="col-form-label col-md-2">Role</label>
+                    <div class="col-md-8">
+                        <select name="user_role" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Subscriber">Subscriber</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <label for="username" class="col-form-label col-md-2">Username</label>
+                    <div class="col-md-8">
+                        <input name="username" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <label for="user_email" class="col-form-label col-md-2">Email</label>
+                    <div class="col-md-8">
+                        <input name="user_email" type="email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <label for="cat_title" class="col-form-label col-md-2">Password</label>
+                    <div class="col-md-8">
+                        <input name="user_pword" type="password" class="form-control" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <button class="btn btn-primary" name="create_user" type="submit">Add User</button>
+                <div class="form-group text-center">
+                    <button class="btn btn-primary custom-btn-primary w-25" name="create_user" type="submit">Add
+                        User</button>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
