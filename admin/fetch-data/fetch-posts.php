@@ -47,7 +47,7 @@ function viewPosts()
     while ($row = mysqli_fetch_array($query)) {
         $subdata = array();
         $subdata[] = "<label class='custom-control material-checkbox'>
-                        <input type='checkbox' class='material-control-input checkbox'name='checkboxArray[]' value='{$row[0]}'>
+                        <input type='checkbox' class='material-control-input checkbox' name='checkboxArray[]' value='{$row[0]}'>
                         <span class='material-control-indicator'></span>
                     </label>";
         $subdata[] = $posts_row_id;
@@ -68,14 +68,15 @@ function viewPosts()
         $subdata[] = $row[7];
         $subdata[] = $row[8];
         $subdata[] = $row[4];
-        $subdata[] = " <a href='view-posts.php?delete={$row[0]}' class='btn btn-danger btn-sm rounded-circle'>
+        $subdata[] = " <a href='#' data-id='{$row[0]}' class='btn btn-danger btn-sm rounded-circle delete'>
                             <i class='fas fa-trash'></i>
                         </a>
                         <a href='view-posts.php?source=edit_post&p_id={$row[0]}' class='btn btn-success btn-sm edit_posts rounded-circle'>
                             <i class='fas fa-edit'></i>
                         </a>";
-        $data[] = $subdata;
         $posts_row_id++;
+
+        $data[] = $subdata;
     }
 
     $json_data = array(
@@ -159,14 +160,15 @@ if (isset($_POST['post_status'])) {
             $subdata[] = $row[7];
             $subdata[] = $row[8];
             $subdata[] = $row[4];
-            $subdata[] = " <a href='view-posts.php?delete={$row[0]}' class='btn btn-danger btn-sm rounded-circle'>
+            $subdata[] = " <a href='#' data-id='{$row[0]}' class='btn btn-danger btn-sm rounded-circle delete'>
                                 <i class='fas fa-trash'></i>
                             </a>
                             <a href='view-posts.php?source=edit_post&p_id={$row[0]}' class='btn btn-success btn-sm edit_posts rounded-circle'>
                                 <i class='fas fa-edit'></i>
                             </a>";
-            $data[] = $subdata;
             $posts_row_id++;
+
+            $data[] = $subdata;
         }
 
         $json_data = array(
