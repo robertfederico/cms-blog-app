@@ -32,8 +32,10 @@ function insert_categories()
 
             $insert = mysqli_query($conn, $query);
 
-            if (!$insert) {
-                die('Failed' . mysqli_error($conn));
+            if ($conn->query($insert) === TRUE) {
+                echo "<script>alert('Success');</script>";
+            } else {
+                echo "Error: " . $insert . "<br>" . $conn->error;
             }
         }
     }
@@ -56,12 +58,12 @@ function display_categories()
         <tr>
             <td>{$cat_row_id}</td>
             <td>{$cat_title}</td>
-            <td><img class='img-fluid' src='../images/$cat_image'></td>
+            <td><img class='img-fluid-category' src='../images/$cat_image'></td>
             <td>
                 <a href='categories.php?delete={$cat_id}' class='btn btn-danger btn-sm rounded-circle'>
                     <i class='fas fa-trash'></i>
                 </a>
-                <a href='#' data-id='{$cat_id}' data-title='{$cat_title}' class='btn btn-success btn-sm edit_category rounded-circle'>
+                <a href='#' data-id='{$cat_id}' data-title='{$cat_title}'  data-image='{$cat_image}' class='btn btn-success btn-sm edit_category rounded-circle'>
                      <i class='fas fa-edit'></i>
                 </a>
             </td>
