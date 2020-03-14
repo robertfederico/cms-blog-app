@@ -1,35 +1,38 @@
 <!-- Fix this tomorrow -->
+<div class="title-container">
+    <h5>Users</h5>
+    <p> Here you can manage users</p>
+</div>
+<div class="filter-container">
+    <div class="table-responsive">
+        <table id="users_table" class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $row_id = 1;
 
-<table id="post_table" class="table table-hover text-nowrap">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Date</th>
-            <th>Action</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $row_id = 1;
+                $query = "SELECT * FROM users";
+                $select_users = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_assoc($select_users)) {
+                    $user_id = $row['user_id'];
+                    $username = $row['username'];
+                    $user_firstname = $row['user_firstname'];
+                    $user_lastname = $row['user_lastname'];
+                    $user_email = $row['user_email'];
+                    $user_image = $row['user_image'];
+                    $user_role = $row['user_role'];
 
-        $query = "SELECT * FROM users";
-        $select_users = mysqli_query($conn, $query);
-        while ($row = mysqli_fetch_assoc($select_users)) {
-            $user_id = $row['user_id'];
-            $username = $row['username'];
-            $user_firstname = $row['user_firstname'];
-            $user_lastname = $row['user_lastname'];
-            $user_email = $row['user_email'];
-            $user_image = $row['user_image'];
-            $user_role = $row['user_role'];
-
-            echo "
+                    echo "
                 <tr>
                     <td>{$row_id}</td>
                     <td>{$username}</td>
@@ -37,7 +40,6 @@
                     <td>{$user_lastname}</td>
                     <td>{$user_email}</td>
                     <td>{$user_role}</td>
-                    <td></td>
                     <td>
                         <a href='users.php?source=edit_user&u_id={$user_id}' class='btn btn-primary btn-sm rounded-circle'>
                             <i class='fas fa-edit'></i>
@@ -47,11 +49,13 @@
                         </a>
                     </td>
                 </tr>";
-            $row_id++;
-        }
-        ?>
-    </tbody>
-</table>
+                    $row_id++;
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <?php
 if (isset($_GET['delete'])) {
