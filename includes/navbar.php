@@ -28,21 +28,20 @@
                             if (isset($_SESSION['username'])) {
                                 echo
                                     "  <ul class='navbar-nav ml-auto'>
-                                        <li class='nav-item'>
-                                        <a class='nav-link' href='admin'><span class='fas fa-tachometer'>
-                                        </span> {$_SESSION['f_name']} {$_SESSION['l_name']}
-                                        </a>
-                                        </li>
-                                    </ul>";
+                                            <li class='nav-item'>
+                                                <a class='nav-link' href='admin'><span class='fas fa-tachometer'>
+                                                     </span> {$_SESSION['f_name']} {$_SESSION['l_name']}
+                                                </a>
+                                            </li>
+                                        </ul>";
                             } else {
                                 echo '
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item"><a class="nav-link " href="#"
-                                         data-toggle="modal" data-target="#registerModal">Register</a>
-                                    </li>
-                                    <li class="nav-item"><a class="btn btn-success btn-sm text-white" href="#"
-                                        data-toggle="modal" data-target="#loginModal"><i class="fas fa-lock"></i>
-                                        Login</a> 
+                                    <li class="nav-item">
+                                        <a class="btn text-uppercase sign-in-btn" href="#"
+                                            data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in"></i>
+                                            Sign In
+                                        </a> 
                                     </li> 
                                 </ul>';
                             }
@@ -91,67 +90,82 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+                <h5 class="modal-title text-uppercase" id="staticBackdropLabel">BLog App</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body p-5">
-                <form action="">
-                    <div class="alert_log">
-                        <p class="closebtn">&times;</p>
-                        <div class="text-center">
-                            <span id="title"></span>
+            <div class="modal-body">
+                <div class="row p-0">
+                    <div class="col-md-12" id="tabs">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                                    role="tab" aria-controls="nav-home" aria-selected="true">Login</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                    role="tab" aria-controls="nav-profile" aria-selected="false">Register</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-home-tab">
+                                <form action="">
+                                    <div class="alert_log">
+                                        <p class="closebtn mr-2 mt-1">&times;</p>
+                                        <div class="alert-container">
+                                            <span class="fas fa-exclamation-triangle fa-2x mr-3"></span>
+                                            <div class="text-center">
+                                                <span id="title"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" id="username" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Password</label>
+                                        <input type="password" name="password" id="password" class="form-control"
+                                            required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block custom-btn"
+                                        id="login">Login</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+                                <form action="" id="register_form">
+                                    <div class="alert_reg">
+                                        <p class="closebtn mr-2 mt-1">&times;</p>
+                                        <div class="alert-container">
+                                            <span class="fas fa-exclamation-triangle fa-2x mr-3"></span>
+                                            <div class="text-center">
+                                                <span id="title_reg"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="email" name="reg_username" id="reg_username" class="form-control"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <input type="email" name="reg_email" id="reg_email" class="form-control"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Password</label>
+                                        <input type="password" name="reg_password" id="reg_password"
+                                            class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block custom-btn"
+                                        id="register">Register</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="login">Login</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Register Modal -->
-<div class="modal fade" id="registerModal" data-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Register</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-5">
-                <form action="" id="register_form">
-                    <div class="alert_reg">
-                        <p class="closebtn">&times;</p>
-                        <div class="text-center">
-                            <span id="title_reg"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="email" name="reg_username" id="reg_username" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Email</label>
-                        <input type="email" name="reg_email" id="reg_email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="username">Password</label>
-                        <input type="password" name="reg_password" id="reg_password" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block" id="register">Register</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
