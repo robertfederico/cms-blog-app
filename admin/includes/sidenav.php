@@ -2,12 +2,11 @@
     <i class="fas fa-bars"></i>
 </a>
 
-<nav id="sidebar" class="sidebar-wrapper">
+<nav id="sidebar" class="sidebar-wrapper shadow-lg">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="index.php">CMS Admin</a>
-            <div id="close-sidebar">
-                <i class="fas fa-times"></i>
+            <div id="close-sidebar" class="ml-auto">
+                <i class="fas fa-arrow-left"></i>
             </div>
         </div>
         <div class="sidebar-header">
@@ -31,10 +30,8 @@
                             $user_role = $row['user_role'];
 
                             echo $user_firstname;
-                            echo '<strong>';
                             echo ' ';
                             echo $user_lastname;
-                            echo '</strong>';
                         ?>
 
                     </a>
@@ -73,9 +70,6 @@
         <!-- sidebar-search  -->
         <div class="sidebar-menu">
             <ul>
-                <li class="header-menu">
-                    <span>General</span>
-                </li>
                 <li>
                     <a class="sidebar-btn" href="index.php">
                         <i class="fa fa-tachometer-alt"></i>
@@ -120,29 +114,6 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-dropdown">
-                    <a class="sidebar-btn" href="#">
-                        <i class="fa fa-chart-line"></i>
-                        <span>Charts</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            <li>
-                                <a href="#">Pie chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Line chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Bar chart</a>
-                            </li>
-                            <li>
-                                <a href="#">Histogram</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
                 <li>
                     <a class="sidebar-btn" href="comments.php">
                         <i class="fa fa-calendar"></i>
