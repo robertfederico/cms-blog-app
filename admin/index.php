@@ -8,8 +8,7 @@
     <!-- sidebar-wrapper  -->
     <main class="page-content">
         <div class="container-fluid">
-            <h1>Dashboard</h1>
-            <hr class="divider">
+            <h5 class="title-header">dashboard</h5>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="card shadow p-0 m-0">
